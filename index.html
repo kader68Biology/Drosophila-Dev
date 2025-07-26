@@ -898,7 +898,36 @@
         let isAdmin = false;
         let authToken = null;
 
-        // Fonction de login avec backend
+        // Données des étudiants (pour simulation sans backend)
+        const studentsData = [
+            { name: "Ali Benali", presence: "Présent", cc: 16, ef: 14, moyenne: 15 },
+            { name: "Camille Dubois", presence: "Présent", cc: 18, ef: 17, moyenne: 17.5 },
+            { name: "David Moreau", presence: "Absent", cc: null, ef: null, moyenne: null },
+            { name: "Emma Laurent", presence: "Présent", cc: 15, ef: 16, moyenne: 15.5 },
+            { name: "François Martin", presence: "Présent", cc: 14, ef: 13, moyenne: 13.5 },
+            { name: "Isabelle Rousseau", presence: "Présent", cc: 17, ef: 18, moyenne: 17.5 },
+            { name: "Julien Petit", presence: "Absent", cc: null, ef: null, moyenne: null },
+            { name: "Laura Bernard", presence: "Présent", cc: 19, ef: 18, moyenne: 18.5 },
+            { name: "Marc Dubois", presence: "Présent", cc: 13, ef: 14, moyenne: 13.5 },
+            { name: "Nathalie Simon", presence: "Présent", cc: 16, ef: 15, moyenne: 15.5 }
+        ];
+
+        // Données de connexion
+        const validUsers = {
+            "Ali Benali": { password: "L3droso2025", role: "student" },
+            "Camille Dubois": { password: "L3droso2025", role: "student" },
+            "David Moreau": { password: "L3droso2025", role: "student" },
+            "Emma Laurent": { password: "L3droso2025", role: "student" },
+            "François Martin": { password: "L3droso2025", role: "student" },
+            "Isabelle Rousseau": { password: "L3droso2025", role: "student" },
+            "Julien Petit": { password: "L3droso2025", role: "student" },
+            "Laura Bernard": { password: "L3droso2025", role: "student" },
+            "Marc Dubois": { password: "L3droso2025", role: "student" },
+            "Nathalie Simon": { password: "L3droso2025", role: "student" },
+            "Administrateur": { password: "DrososegCTRLL3", role: "admin" }
+        };
+
+        // Fonction de login
         function login() {
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
@@ -915,29 +944,19 @@
             loginBtn.disabled = true;
             loginBtn.innerHTML = 'Connexion...';
 
-            // Appel API pour l'authentification
-            fetch('/api/auth/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ username, password }),
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Erreur de connexion');
-                }
-                return response.json();
-            })
-            .then(data => {
-                if (data.token) {
+            // Vérifier les identifiants
+            setTimeout(() => {
+                const user = validUsers[username];
+                
+                if (user && user.password === password) {
                     // Stocker les informations de l'utilisateur
-                    authToken = data.token;
-                    currentUser = data.user;
-                    isAdmin = data.user.role === 'admin';
+                    currentUser = {
+                        username: username,
+                        role: user.role
+                    };
+                    isAdmin = user.role === 'admin';
                     
                     // Stocker dans localStorage pour persistance
-                    localStorage.setItem('authToken', authToken);
                     localStorage.setItem('currentUser', JSON.stringify(currentUser));
                     
                     // Afficher le contenu principal
@@ -950,29 +969,22 @@
                     
                     messageDiv.innerHTML = '<span class="success">Connexion réussie! Bienvenue ' + username + '</span>';
                 } else {
-                    messageDiv.innerHTML = '<span class="error">' + (data.error || 'Erreur de connexion') + '</span>';
+                    messageDiv.innerHTML = '<span class="error">Nom d\'utilisateur ou mot de passe incorrect</span>';
                 }
-            })
-            .catch(error => {
-                console.error('Erreur de connexion:', error);
-                messageDiv.innerHTML = '<span class="error">Erreur de connexion au serveur</span>';
-            })
-            .finally(() => {
+                
                 // Réactiver le bouton
                 loginBtn.disabled = false;
                 loginBtn.innerHTML = 'Se connecter';
-            });
+            }, 500);
         }
 
         // Fonction de déconnexion
         function logout() {
             // Effacer les données de session
-            authToken = null;
             currentUser = null;
             isAdmin = false;
             
             // Effacer le localStorage
-            localStorage.removeItem('authToken');
             localStorage.removeItem('currentUser');
             
             // Afficher l'écran de connexion
@@ -1105,43 +1117,12 @@
             return "Besoin de réviser davantage! 🎯";
         }
 
-        // Charger les données des étudiants depuis le backend
+        // Charger les données des étudiants
         function loadStudents() {
             const studentsContent = document.getElementById('studentsContent');
             
-            // Afficher le loader
-            studentsContent.innerHTML = `
-                <div class="loading">
-                    <div class="loading-spinner"></div>
-                    <p>Chargement des données étudiants...</p>
-                </div>
-            `;
-            
-            // Récupérer le token d'authentification
-            const token = localStorage.getItem('authToken');
-            
-            if (!token) {
-                studentsContent.innerHTML = '<p class="error">Vous devez être connecté pour voir cette page.</p>';
-                return;
-            }
-            
-            // Appel API pour récupérer les étudiants
-            fetch('/api/students', {
-                headers: {
-                    'Authorization': 'Bearer ' + token,
-                    'Content-Type': 'application/json',
-                },
-            })
-            .then(response => {
-                if (!response.ok) {
-                    if (response.status === 401) {
-                        throw new Error('Session expirée. Veuillez vous reconnecter.');
-                    }
-                    throw new Error('Erreur lors du chargement des données');
-                }
-                return response.json();
-            })
-            .then(students => {
+            // Simuler un chargement
+            setTimeout(() => {
                 // Générer le tableau HTML
                 let tableHTML = `
                     <table class="students-list">
@@ -1157,11 +1138,11 @@
                         <tbody>
                 `;
                 
-                students.forEach(student => {
+                studentsData.forEach(student => {
                     tableHTML += `
                         <tr>
-                            <td>${student.name || student.username}</td>
-                            <td class="${student.presence === 'Présent' ? 'present' : 'absent'}">${student.presence || 'Absent'}</td>
+                            <td>${student.name}</td>
+                            <td class="${student.presence === 'Présent' ? 'present' : 'absent'}">${student.presence}</td>
                             <td class="grade">${student.cc !== null ? student.cc : '-'}</td>
                             <td class="grade">${student.ef !== null ? student.ef : '-'}</td>
                             <td class="grade">${student.moyenne !== null ? student.moyenne : '-'}</td>
@@ -1175,21 +1156,15 @@
                 `;
                 
                 studentsContent.innerHTML = tableHTML;
-            })
-            .catch(error => {
-                console.error('Erreur lors du chargement des étudiants:', error);
-                studentsContent.innerHTML = `<p class="error">Erreur: ${error.message}</p>`;
-            });
+            }, 800);
         }
 
         // Vérifier la session au chargement de la page
         function checkSession() {
-            const token = localStorage.getItem('authToken');
             const user = localStorage.getItem('currentUser');
             
-            if (token && user) {
+            if (user) {
                 try {
-                    authToken = token;
                     currentUser = JSON.parse(user);
                     isAdmin = currentUser.role === 'admin';
                     
