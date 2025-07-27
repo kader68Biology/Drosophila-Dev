@@ -352,6 +352,7 @@
             <h1>🎓 E-Learning Drosophila</h1>
             <p>Module : Aspects Génétiques du Développement Embryonnaire - L3 Biotechnologie</p>
             <p>Faculté des Sciences ABB - Département de Biotechnologie</p>
+            <p>Enseignant: Dr. A. ALLOUCHE</p>
         </div>
 
         <!-- Login Section -->
@@ -569,6 +570,8 @@
                             <li><strong>Activation transcriptionnelle</strong> :
                                 <ul>
                                     <li>Bicoid active la transcription de <em>hunchback</em> dans la région antérieure.</li>
+                                    <li>Mécanisme: Bicoid se lie directement aux enhancers de hunchback, activant sa transcription dans la région antérieure.</li>
+                                    <li>La concentration élevée de Bicoid à l'avant entraîne une forte expression de hunchback dans cette zone.</li>
                                 </ul>
                             </li>
                             <li><strong>Répression translationnelle</strong> :
@@ -580,6 +583,13 @@
                                 <ul>
                                     <li>Bicoid et Nanos ont des effets opposés sur <em>hunchback</em>.</li>
                                     <li>Caudal active les gènes gap postérieurs comme <em>knirps</em> et <em>giant</em>.</li>
+                                    <li>Hunchback réprime directement l'expression de caudal dans la région antérieure.</li>
+                                    <li>À l'inverse, Caudal active des gènes postérieurs qui répriment indirectement hunchback dans la région postérieure.</li>
+                                </ul>
+                            </li>
+                            <li><strong>Boucle de rétroaction</strong> :
+                                <ul>
+                                    <li>Bicoid active hunchback, qui à son tour peut moduler l'activité de Bicoid en influençant l'expression d'autres gènes.</li>
                                 </ul>
                             </li>
                         </ul>
@@ -641,6 +651,12 @@
                                         <ul>
                                             <li>Exprimé en bandes alternées par rapport à Eve.</li>
                                             <li>Activation : Ftz est activé dans des bandes alternées par rapport à eve, formant un motif complémentaire.</li>
+                                            <li>Son activation est contrôlée par des combinaisons similaires de gènes gap :
+                                                <ul>
+                                                    <li>Bande 1 : Activée par Bicoid, réprimée par Hunchback.</li>
+                                                    <li>Bandes postérieures : Activées par Caudal, réprimées par Knirps.</li>
+                                                </ul>
+                                            </li>
                                         </ul>
                                     </li>
                                 </ul>
@@ -649,6 +665,8 @@
                                 <ul>
                                     <li><em>runt</em>, <em>hairy</em>, <em>odd-skipped</em> affinent les motifs des gènes primaires.</li>
                                     <li>Par exemple, Runt peut réprimer <em>even-skipped</em> dans ses propres bandes.</li>
+                                    <li>Hairy est un autre gène pair-rule secondaire exprimé en quatorze bandes, agissant comme un répresseur transcriptionnel.</li>
+                                    <li>Odd-skipped (Odd) est exprimé en quatorze bandes, souvent en opposition avec Runt et Hairy.</li>
                                 </ul>
                             </li>
                         </ul>
@@ -662,12 +680,14 @@
                                         <ul>
                                             <li>Exprimé dans la partie postérieure de chaque segment (parasegment).</li>
                                             <li>Engrailed définit la limite postérieure de chaque parasegment en activant des gènes cibles spécifiques.</li>
+                                            <li>Even-skipped active engrailed dans les cellules postérieures.</li>
                                         </ul>
                                     </li>
                                     <li><em>wingless</em> (<em>wg</em>) :
                                         <ul>
                                             <li>Activé par certains gènes pair-rule, notamment <em>Odd-skipped</em> et <em>Hairy</em>, dans des régions spécifiques.</li>
                                             <li>Wingless agit comme un signal paracrine qui maintient la polarité des segments.</li>
+                                            <li>Odd-skipped active wingless dans les cellules antérieures.</li>
                                         </ul>
                                     </li>
                                     <li><em>hedgehog</em> (<em>hh</em>) :
@@ -691,7 +711,22 @@
                             </li>
                             <li><strong>Boucles de rétroaction</strong> :
                                 <ul>
+                                    <li><strong>Boucle de rétroaction positive</strong> :
+                                        <ul>
+                                            <li>Hedgehog → Wingless → Engrailed → Hedgehog</li>
+                                            <li>Hedgehog produit dans les cellules postérieures induit l'expression de wingless dans les cellules antérieures.</li>
+                                            <li>Wingless, une fois produit, active l'expression de engrailed dans les cellules postérieures.</li>
+                                            <li>Engrailed, à son tour, active la production de Hedgehog, créant ainsi une boucle de rétroaction positive.</li>
+                                        </ul>
+                                    </li>
                                     <li>Les boucles de rétroaction positive et les mécanismes antagonistes maintiennent des frontières nettes entre les compartiments.</li>
+                                </ul>
+                            </li>
+                            <li><strong>Stabilisation des frontières</strong> :
+                                <ul>
+                                    <li>Les signaux paracrines (Hedgehog et Wingless) créent des interactions cellulaires qui renforcent les frontières entre les compartiments.</li>
+                                    <li>Hedgehog provenant des cellules postérieures induit Wingless dans les cellules antérieures.</li>
+                                    <li>Wingless provenant des cellules antérieures stabilise Engrailed dans les cellules postérieures.</li>
                                 </ul>
                             </li>
                         </ul>
@@ -742,16 +777,23 @@
                             <li><strong>Colinéarité</strong> :
                                 <ul>
                                     <li>Ordre linéaire des gènes dans le génome correspond à leur ordre d'expression le long de l'axe antéro-postérieur.</li>
+                                    <li>Les gènes situés à l'extrémité 3' du complexe (par exemple, lab, pb) sont exprimés dans les segments antérieurs.</li>
+                                    <li>Les gènes situés à l'extrémité 5' (par exemple, Abd-B) sont exprimés dans les segments postérieurs.</li>
                                 </ul>
                             </li>
                             <li><strong>Répression</strong> :
                                 <ul>
                                     <li>Les gènes Hox sont réprimés dans les segments non ciblés par des protéines comme <strong>PcG</strong> (Polycomb group).</li>
+                                    <li>Les gènes Hox s'excluent mutuellement dans leurs domaines d'expression grâce à des mécanismes de répression transcriptionnelle.</li>
+                                    <li>Par exemple, Ultrabithorax réprime Antennapedia dans les segments abdominaux.</li>
                                 </ul>
                             </li>
                             <li><strong>Activation</strong> :
                                 <ul>
                                     <li>Mécanismes épigénétiques : Les complexes Trithorax (TrxG) maintiennent l'expression active des gènes Hox dans les segments appropriés.</li>
+                                    <li>Une fois activés, les gènes Hox maintiennent leur expression via des modifications épigénétiques, telles que la méthylation de l'ADN et les modifications des histones.</li>
+                                    <li>Polycomb: Réprime les gènes Hox dans les régions où ils ne doivent pas être exprimés.</li>
+                                    <li>Trithorax: Maintient l'activation des gènes Hox dans leurs domaines spécifiques.</li>
                                 </ul>
                             </li>
                         </ul>
@@ -761,6 +803,7 @@
                             <li><em>Ubx</em> muté → duplication de pattes thoraciques (effet bithorax).</li>
                             <li><em>Antp</em> muté → transformation de l'antenne en pattes.</li>
                             <li>Mutations des gènes Hox spécifient l'identité des segments en activant ou réprimant des batteries de gènes cibles.</li>
+                            <li>Par exemple, Ultrabithorax réprime la formation des pattes dans le segment T3, ce qui explique pourquoi les mouches n'ont que trois paires de pattes.</li>
                         </ul>
                         
                         <p><strong>Importance évolutionnaire :</strong></p>
@@ -782,10 +825,9 @@
                                     <li>Ces enhancers répondent à des signaux provenant des gradients de morphogènes comme Bicoid, Hunchback, Krüppel, et Caudal.</li>
                                 </ul>
                             </li>
-                            <li><strong>Répression par les complexes Polycomb et Trithorax</strong> :
+                            <li><strong>Amplification par boucles de rétroaction positive</strong> :
                                 <ul>
-                                    <li>Complexes PcG répriment les gènes Hox dans les segments où ils ne doivent pas être exprimés.</li>
-                                    <li>Complexes TrxG maintiennent l'expression active des gènes Hox dans les segments appropriés.</li>
+                                    <li>Certains gènes Hox amplifient leur propre expression via des boucles de rétroaction positive.</li>
                                 </ul>
                             </li>
                         </ul>
@@ -850,6 +892,61 @@
                             <div class="option" onclick="selectOption(this, 'C')">C) Dépôt de réserves nutritives</div>
                             <div class="option" onclick="selectOption(this, 'D')">D) Activation des gènes maternels</div>
                             <div class="option" onclick="selectOption(this, 'E')">E) Synthèse de la membrane vitelline</div>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>6. Quelle est la fonction du gène <em>nanos</em> ?</h4>
+                        <div class="options">
+                            <div class="option" onclick="selectOption(this, 'A')">A) Activer hunchback dans la région antérieure</div>
+                            <div class="option" onclick="selectOption(this, 'B')">B) Réprimer hunchback dans la région postérieure</div>
+                            <div class="option" onclick="selectOption(this, 'C')">C) Activer caudal dans la région postérieure</div>
+                            <div class="option" onclick="selectOption(this, 'D')">D) Réprimer bicoid dans la région antérieure</div>
+                            <div class="option" onclick="selectOption(this, 'E')">E) Activer giant dans la région centrale</div>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>7. Quel gène active l'expression de <em>engrailed</em> dans les cellules postérieures ?</h4>
+                        <div class="options">
+                            <div class="option" onclick="selectOption(this, 'A')">A) fushi tarazu</div>
+                            <div class="option" onclick="selectOption(this, 'B')">B) even-skipped</div>
+                            <div class="option" onclick="selectOption(this, 'C')">C) wingless</div>
+                            <div class="option" onclick="selectOption(this, 'D')">D) hedgehog</div>
+                            <div class="option" onclick="selectOption(this, 'E')">E) krüppel</div>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>8. Quelle est la fonction des gènes gap ?</h4>
+                        <div class="options">
+                            <div class="option" onclick="selectOption(this, 'A')">A) Définir des bandes alternées</div>
+                            <div class="option" onclick="selectOption(this, 'B')">B) Définir des zones larges le long de l'axe A-P</div>
+                            <div class="option" onclick="selectOption(this, 'C')">C) Définir les frontières internes des segments</div>
+                            <div class="option" onclick="selectOption(this, 'D')">D) Définir l'identité des segments</div>
+                            <div class="option" onclick="selectOption(this, 'E')">E) Activer la gastrulation</div>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>9. Quel complexe contient le gène <em>Ultrabithorax</em> ?</h4>
+                        <div class="options">
+                            <div class="option" onclick="selectOption(this, 'A')">A) ANT-C</div>
+                            <div class="option" onclick="selectOption(this, 'B')">B) BX-C</div>
+                            <div class="option" onclick="selectOption(this, 'C')">C) Hox-A</div>
+                            <div class="option" onclick="selectOption(this, 'D')">D) Hox-D</div>
+                            <div class="option" onclick="selectOption(this, 'E')">E) ParaHox</div>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <h4>10. Quel est le rôle de la voie Toll dans le développement de Drosophila ?</h4>
+                        <div class="options">
+                            <div class="option" onclick="selectOption(this, 'A')">A) Établir l'axe antéro-postérieur</div>
+                            <div class="option" onclick="selectOption(this, 'B')">B) Établir l'axe dorso-ventral</div>
+                            <div class="option" onclick="selectOption(this, 'C')">C) Activer la segmentation</div>
+                            <div class="option" onclick="selectOption(this, 'D')">D) Contrôler l'ovogenèse</div>
+                            <div class="option" onclick="selectOption(this, 'E')">E) Activer la métamorphose</div>
                         </div>
                     </div>
 
@@ -1088,7 +1185,7 @@
             const total = questions.length;
             
             // Réponses correctes
-            const correctAnswers = ['B', 'B', 'B', 'A', 'A'];
+            const correctAnswers = ['B', 'B', 'B', 'A', 'A', 'B', 'B', 'B', 'B', 'B'];
             
             questions.forEach((question, index) => {
                 const selected = question.dataset.selected;
@@ -1111,9 +1208,11 @@
 
         // Message selon le score
         function getScoreMessage(score) {
-            if (score >= 80) return "Excellent travail! 🎉";
-            if (score >= 60) return "Bon travail! 👍";
-            if (score >= 40) return "Continuez à réviser! 📚";
+            if (score >= 90) return "Excellent travail! 🎉";
+            if (score >= 80) return "Très bon travail! 👍";
+            if (score >= 70) return "Bon travail! ✅";
+            if (score >= 60) return "Satisfaisant! 📚";
+            if (score >= 40) return "Continuez à réviser! 📘";
             return "Besoin de réviser davantage! 🎯";
         }
 
